@@ -3,6 +3,7 @@
 #include<iostream>
 #include<string>
 #include<map>
+#include<chrono>
 
 using namespace std;
 
@@ -425,6 +426,35 @@ string catAndMouse(int x, int y, int z) {
     return "Cat B";
 }
 
+/*
+ * Complete the 'pickingNumbers' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts INTEGER_ARRAY a as parameter.
+ */
+int pickingNumbers(vector<int> a) {
+    int res = 0;
+    for (int i = 0; i < a.size(); i++) {
+        vector<int> newArr;
+        newArr.push_back(a[i]);
+        
+        for (int k = 0; k < a.size(); k++) {
+            if (i == k) continue;
+            bool add = true;
+            for (int nA : newArr) {
+                if (abs(nA - a[k]) > 1) {
+                    add = false;
+                    break;
+                }
+            }
+            if (add) newArr.push_back(a[k]);
+        }
+
+        if (newArr.size() > res) res = newArr.size();
+    }
+    return res;
+}
+
 int main()
 {
     /*
@@ -472,8 +502,12 @@ int main()
     //cout << "Minimum page count is " << pageCount(18, 17) << endl;
 
     //cout << "Valley: " << countingValleys(8, "UDDDUDUU");
+
+    //cout << catAndMouse(1, 2, 3) << endl;
+    //cout << catAndMouse(1, 3, 2) << endl;
     */
 
-    cout << catAndMouse(1, 2, 3) << endl;
-    cout << catAndMouse(1, 3, 2) << endl;
+    vector<int> arr = { 4, 6, 5, 3, 3, 1 };
+    cout << "Longest subarray is " << pickingNumbers(arr) << endl;
+
 }
