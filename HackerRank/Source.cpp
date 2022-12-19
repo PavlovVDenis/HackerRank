@@ -413,7 +413,16 @@ int countingValleys(int steps, string path) {
  * Complete the getMoneySpent function below.
  */
 int getMoneySpent(vector<int> keyboards, vector<int> drives, int b) {
-     
+    return 0;
+}
+
+// Complete the catAndMouse function below.
+string catAndMouse(int x, int y, int z) {
+    int x_z = abs(x - z);
+    int y_z = abs(y - z);
+    if (x_z == y_z) return "Mouse C";
+    if (x_z < y_z) return "Cat A";
+    return "Cat B";
 }
 
 int main()
@@ -465,4 +474,6 @@ int main()
     //cout << "Valley: " << countingValleys(8, "UDDDUDUU");
     */
 
+    cout << catAndMouse(1, 2, 3) << endl;
+    cout << catAndMouse(1, 3, 2) << endl;
 }
