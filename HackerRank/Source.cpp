@@ -4,6 +4,7 @@
 #include<string>
 #include<map>
 #include<chrono>
+#include<algorithm>
 
 using namespace std;
 
@@ -455,6 +456,23 @@ int pickingNumbers(vector<int> a) {
     return res;
 }
 
+/*
+ * Complete the 'climbingLeaderboard' function below.
+ *
+ * The function is expected to return an INTEGER_ARRAY.
+ * The function accepts following parameters:
+ *  1. INTEGER_ARRAY ranked
+ *  2. INTEGER_ARRAY player
+ */
+vector<int> climbingLeaderboard(vector<int> ranked, vector<int> player) {
+    vector<int> res;
+    for (int p : player) {
+        int rank = 1;
+        res.push_back(rank);
+    }
+    return res;
+}
+
 int main()
 {
     /*
@@ -505,9 +523,13 @@ int main()
 
     //cout << catAndMouse(1, 2, 3) << endl;
     //cout << catAndMouse(1, 3, 2) << endl;
-    */
 
     vector<int> arr = { 4, 6, 5, 3, 3, 1 };
     cout << "Longest subarray is " << pickingNumbers(arr) << endl;
+    */
 
+    vector<int> ranked = { 100, 100, 50, 40, 40, 20, 10 };
+    vector<int> played = { 5, 25, 50, 120 };
+    auto res = climbingLeaderboard(ranked, played);
+    for (auto i : res) cout << i << endl;
 }
