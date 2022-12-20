@@ -465,12 +465,29 @@ int pickingNumbers(vector<int> a) {
  *  2. INTEGER_ARRAY player
  */
 vector<int> climbingLeaderboard(vector<int> ranked, vector<int> player) {
-    vector<int> res;
+
+    multimap<int, bool> temp;
+
+    for (int r : ranked) temp.insert(make_pair(r, false));
+
+    int i = 1;
     for (int p : player) {
-        int rank = 1;
-        res.push_back(rank);
+
+        multimap<int, bool>::iterator it;
+        auto range = temp.equal_range(p);
+        for (it = range.first; it != range.second; it++) {
+            if (it->second) break;
+        }
+
+        cout << "Game " << i << endl;
+        cout << "-----------" << endl;
+        for (auto t : temp) cout << t.first << " " << t.second << endl;
+        cout << "-----------" << endl;
+        i++;
     }
-    return res;
+
+    return { 0 };
+
 }
 
 int main()
