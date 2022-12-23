@@ -466,28 +466,42 @@ int pickingNumbers(vector<int> a) {
  */
 vector<int> climbingLeaderboard(vector<int> ranked, vector<int> player) {
 
-    multimap<int, bool> temp;
+    typedef map<long long, bool, std::greater<float>> mapOrder_Greater;
+    mapOrder_Greater temp;
+    
+    for (auto& r : ranked) temp.insert(make_pair(r, false));
+    mapOrder_Greater::iterator itt = temp.end();
 
-    for (int r : ranked) temp.insert(make_pair(r, false));
+    vector<int> res;
 
-    int i = 1;
-    for (int p : player) {
+    int i = 0;
 
-        multimap<int, bool>::iterator it;
-        auto range = temp.equal_range(p);
-        for (it = range.first; it != range.second; it++) {
-            if (it->second) break;
+    for (auto& p : player) {
+        long long curRank = p - 0.1;
+        if (itt == temp.end()) {
+            temp.insert(make_pair(curRank, true));
+            itt = temp.find(curRank);
+        }
+        else {
+            temp[curRank] = true;
         }
 
-        cout << "Game " << i << endl;
-        cout << "-----------" << endl;
-        for (auto t : temp) cout << t.first << " " << t.second << endl;
-        cout << "-----------" << endl;
-        i++;
+        //cout << "Game #" << i << endl;
+        //for (auto& ttt : temp) cout << ttt.first << " - " << ttt.second << ";   " << endl;
+        //i++;
+
+        int pos = 0;
+        for (auto& t : temp) {
+            if(p != t.first) pos++;
+            if (t.first == curRank) {
+                res.push_back(pos);
+                break;
+            }
+        }
+        
+        //temp.erase(itt);
     }
-
-    return { 0 };
-
+    return res;
 }
 
 int main()
