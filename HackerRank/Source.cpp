@@ -468,10 +468,12 @@ vector<int> climbingLeaderboard(vector<int> ranked, vector<int> player) {
     vector<int> res;
 
 
-    for (auto& p : player) {
+
         int rank = 0;
         int prevRank = 0;
         if (p > ranked[0]) {
+            res.push_back(1);
+            continue;
             res.push_back(1);
             continue;
         }
