@@ -465,41 +465,22 @@ int pickingNumbers(vector<int> a) {
  *  2. INTEGER_ARRAY player
  */
 vector<int> climbingLeaderboard(vector<int> ranked, vector<int> player) {
-
-    typedef map<long long, bool, std::greater<float>> mapOrder_Greater;
-    mapOrder_Greater temp;
-    
-    for (auto& r : ranked) temp.insert(make_pair(r, false));
-    mapOrder_Greater::iterator itt = temp.end();
-
     vector<int> res;
 
-    int i = 0;
 
     for (auto& p : player) {
-        long long curRank = p - 0.1;
-        if (itt == temp.end()) {
-            temp.insert(make_pair(curRank, true));
-            itt = temp.find(curRank);
+        int rank = 0;
+        int prevRank = 0;
+        if (p > ranked[0]) {
+            res.push_back(1);
+            continue;
         }
-        else {
-            temp[curRank] = true;
+        for (auto& r: ranked) {
+            if (p < r && r != prevRank) rank++;
+            if (p > r) break;
+            prevRank = r;
         }
-
-        //cout << "Game #" << i << endl;
-        //for (auto& ttt : temp) cout << ttt.first << " - " << ttt.second << ";   " << endl;
-        //i++;
-
-        int pos = 0;
-        for (auto& t : temp) {
-            if(p != t.first) pos++;
-            if (t.first == curRank) {
-                res.push_back(pos);
-                break;
-            }
-        }
-        
-        //temp.erase(itt);
+        res.push_back(rank + 1);
     }
     return res;
 }
@@ -559,8 +540,8 @@ int main()
     cout << "Longest subarray is " << pickingNumbers(arr) << endl;
     */
 
-    vector<int> ranked = { 100, 100, 50, 40, 40, 20, 10 };
-    vector<int> played = { 5, 25, 50, 120 };
+    vector<int> ranked = { 100, 90, 90, 80, 75, 60 };
+    vector<int> played = { 50, 65, 77, 90, 102 };
     auto res = climbingLeaderboard(ranked, played);
     for (auto i : res) cout << i << endl;
 }
