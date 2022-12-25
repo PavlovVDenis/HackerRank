@@ -529,6 +529,26 @@ int hurdleRace(int k, vector<int> height) {
     return maxUnits == k ? 0 : (maxUnits - k);
 }
 
+/*
+ * Complete the 'designerPdfViewer' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts following parameters:
+ *  1. INTEGER_ARRAY h
+ *  2. STRING word
+ */
+
+int designerPdfViewer(vector<int> h, string word) {
+    string alphabet = "abcdefghijklmnopqrstuvwxyz";
+    int wordSize = word.size();
+    int maxHeight = 0;
+    for (int i = 0; i < wordSize; i++) {
+        int pos = alphabet.find(word[i]);
+        if (h[pos] > maxHeight) maxHeight = h[pos];
+    }
+    return wordSize * maxHeight;
+}
+
 int main()
 {
     /*
@@ -598,8 +618,11 @@ int main()
         329, 330, 330, 332, 337, 337, 341, 341, 349, 351, 351, 354, 356, 357, 366, 369, 377, 379, 380, 382, 391, 391, 394, 396, 396, 400 };
     auto res = climbingLeaderboard(ranked, played);
     for (auto i : res) cout << i << endl;
-    */
 
     vector<int> arr = { 2, 5, 4, 5, 2 };
     cout << hurdleRace(7, arr) << endl;
+    */
+
+    vector<int> arr = { 1, 3, 1, 3, 1, 4, 1, 3, 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
+    cout << designerPdfViewer(arr, "abc") << endl;
 }
