@@ -513,6 +513,22 @@ vector<int> climbingLeaderboard(vector<int> ranked, vector<int> player) {
     return res;
 }
 
+/*
+ * Complete the 'hurdleRace' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts following parameters:
+ *  1. INTEGER k
+ *  2. INTEGER_ARRAY height
+ */
+int hurdleRace(int k, vector<int> height) {
+    int maxUnits = k;
+    for (auto& h : height) {
+        if (h > maxUnits) maxUnits = h;
+    }
+    return maxUnits == k ? 0 : (maxUnits - k);
+}
+
 int main()
 {
     /*
@@ -566,7 +582,6 @@ int main()
 
     vector<int> arr = { 4, 6, 5, 3, 3, 1 };
     cout << "Longest subarray is " << pickingNumbers(arr) << endl;
-    */
 
     vector<int> ranked = { 295, 294, 291, 287, 287, 285, 285, 284, 283, 279, 277, 274, 274, 271, 270, 268, 268, 268, 264, 260, 
         259, 258, 257, 255, 252, 250, 244, 241, 240, 237, 236, 236, 231, 227, 
@@ -583,4 +598,8 @@ int main()
         329, 330, 330, 332, 337, 337, 341, 341, 349, 351, 351, 354, 356, 357, 366, 369, 377, 379, 380, 382, 391, 391, 394, 396, 396, 400 };
     auto res = climbingLeaderboard(ranked, played);
     for (auto i : res) cout << i << endl;
+    */
+
+    vector<int> arr = { 2, 5, 4, 5, 2 };
+    cout << hurdleRace(7, arr) << endl;
 }
