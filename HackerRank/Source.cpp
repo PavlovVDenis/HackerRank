@@ -537,7 +537,6 @@ int hurdleRace(int k, vector<int> height) {
  *  1. INTEGER_ARRAY h
  *  2. STRING word
  */
-
 int designerPdfViewer(vector<int> h, string word) {
     string alphabet = "abcdefghijklmnopqrstuvwxyz";
     int wordSize = word.size();
@@ -547,6 +546,22 @@ int designerPdfViewer(vector<int> h, string word) {
         if (h[pos] > maxHeight) maxHeight = h[pos];
     }
     return wordSize * maxHeight;
+}
+
+/*
+ * Complete the 'angryProfessor' function below.
+ *
+ * The function is expected to return a STRING.
+ * The function accepts following parameters:
+ *  1. INTEGER k
+ *  2. INTEGER_ARRAY a
+ */
+string angryProfessor(int k, vector<int> a) {
+    int countInTime = 0;
+    for (auto& aa : a) {
+        if (aa <= 0) countInTime++;
+    }
+    return countInTime < k ? "YES" : "NO";
 }
 
 int main()
@@ -621,8 +636,28 @@ int main()
 
     vector<int> arr = { 2, 5, 4, 5, 2 };
     cout << hurdleRace(7, arr) << endl;
-    */
 
     vector<int> arr = { 1, 3, 1, 3, 1, 4, 1, 3, 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
     cout << designerPdfViewer(arr, "abc") << endl;
+    */
+
+    //7
+    vector <int> arr4 = { 26, 94, -95, 34, 67, -97, 17, 52, 1, 86 };
+    cout << angryProfessor(7, arr4) << endl;
+    //2
+    vector <int> arr5 = { 19, 29, -17, -71, -75, -27, -56, -53, 65, 83 };
+    cout << angryProfessor(2, arr5) << endl;
+    //10
+    vector <int> arr6 = { -32, -3, -70, 8,-40, -96, -18, -46, -21, -79 };
+    cout << angryProfessor(10, arr6) << endl;
+    //9
+    vector <int> arr7 = { -50, 0, 64, 14, -56, -91, -65, -36, 51, -28 };
+    cout << angryProfessor(9, arr7) << endl;
+    //6
+    vector <int> arr8 = { -58, -29, -35, -18, 43, -28, -76, 43, -13, 6 };
+    cout << angryProfessor(6, arr8) << endl;
+    //1
+    vector <int> arr9 = { 88, -17, -96, 43, 83, 99, 25, 90, -39, 86 };
+    cout << angryProfessor(1, arr9) << endl;
+    
 }
