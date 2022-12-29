@@ -564,6 +564,29 @@ string angryProfessor(int k, vector<int> a) {
     return countInTime < k ? "YES" : "NO";
 }
 
+/*
+ * Complete the 'beautifulDays' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts following parameters:
+ *  1. INTEGER i
+ *  2. INTEGER j
+ *  3. INTEGER k
+ */
+int beautifulDays(int i, int j, int k) {
+    int res = 0;
+    for (int num = i; num <= j; num++) {
+        int number = num;
+        int reverseNumber = 0;
+        while (number != 0) {
+            reverseNumber = (reverseNumber * 10) + (number % 10);
+            number = number / 10;
+        }
+        if (abs(num - reverseNumber) % k == 0) res++;
+    }
+    return res;
+}
+
 int main()
 {
     /*
@@ -641,23 +664,5 @@ int main()
     cout << designerPdfViewer(arr, "abc") << endl;
     */
 
-    //7
-    vector <int> arr4 = { 26, 94, -95, 34, 67, -97, 17, 52, 1, 86 };
-    cout << angryProfessor(7, arr4) << endl;
-    //2
-    vector <int> arr5 = { 19, 29, -17, -71, -75, -27, -56, -53, 65, 83 };
-    cout << angryProfessor(2, arr5) << endl;
-    //10
-    vector <int> arr6 = { -32, -3, -70, 8,-40, -96, -18, -46, -21, -79 };
-    cout << angryProfessor(10, arr6) << endl;
-    //9
-    vector <int> arr7 = { -50, 0, 64, 14, -56, -91, -65, -36, 51, -28 };
-    cout << angryProfessor(9, arr7) << endl;
-    //6
-    vector <int> arr8 = { -58, -29, -35, -18, 43, -28, -76, 43, -13, 6 };
-    cout << angryProfessor(6, arr8) << endl;
-    //1
-    vector <int> arr9 = { 88, -17, -96, 43, 83, 99, 25, 90, -39, 86 };
-    cout << angryProfessor(1, arr9) << endl;
-    
+    cout << "Beautyful days: " << beautifulDays(20, 23, 6) << endl;
 }
