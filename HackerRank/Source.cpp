@@ -587,6 +587,23 @@ int beautifulDays(int i, int j, int k) {
     return res;
 }
 
+/*
+ * Complete the 'viralAdvertising' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts INTEGER n as parameter.
+ */
+int viralAdvertising(int n) {
+    int res = 0;
+    int shared = 5;
+    for (int i = 1; i <= n; i++) {
+        if (i != 1) 
+            shared = (shared / 2) * 3;
+        res += (shared / 2);
+     }
+    return res;
+}
+
 int main()
 {
     /*
@@ -662,7 +679,10 @@ int main()
 
     vector<int> arr = { 1, 3, 1, 3, 1, 4, 1, 3, 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
     cout << designerPdfViewer(arr, "abc") << endl;
-    */
 
     cout << "Beautyful days: " << beautifulDays(20, 23, 6) << endl;
+    */
+
+    int n = 5;
+    cout << "Cumulative likes on " << n << "th day is " << viralAdvertising(n) << endl;
 }
