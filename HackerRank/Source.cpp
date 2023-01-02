@@ -724,8 +724,60 @@ int minimumNumber(int n, string password) {
     return res;
 }
 
+/*
+ * Complete the 'caesarCipher' function below.
+ *
+ * The function is expected to return a STRING.
+ * The function accepts following parameters:
+ *  1. STRING s
+ *  2. INTEGER k
+ */
+string caesarCipher(string s, int k) {
+    if (k == 0) return s;
+    
+    string originAlphabet = "abcdefghijklmnopqrstuvwxyz";
+    
+    int new_k = k;
+    int originSize = originAlphabet.size();
+    while (new_k >= originSize) {
+        new_k -= originSize;
+    }
+    string newAlphabet;
+    newAlphabet.append(originAlphabet.substr(new_k));
+    newAlphabet.append(originAlphabet.substr(0, new_k));
+
+    string res;
+
+    for (auto& s_s : s) {
+        
+        bool isUpChar = isupper(s_s);
+       
+        char currentChar;
+        if (isUpChar) {
+            currentChar = tolower(s_s);
+        }
+        else {
+            currentChar = s_s;
+        }
+        int indexChar = originAlphabet.find(currentChar);
+
+        char newChar;
+        if (indexChar != string::npos) {
+            newChar = newAlphabet[indexChar];
+            if (isUpChar) newChar = toupper(newChar);
+        }
+        else {
+            newChar = s_s;
+        }
+        res.push_back(newChar);
+    }
+
+    return res;
+}
+
 int main()
 {
-    string pas = "#HackerRank";
-    cout << "For password [" << pas << "] need " << minimumNumber(pas.size(), pas) << " characters" << endl;
+    string entrance = "www.abc.xy";
+    cout << "Entrance [" << entrance << "]" << endl;
+    cout << caesarCipher(entrance, 87) << endl;
 }
