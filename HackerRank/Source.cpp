@@ -604,85 +604,75 @@ int viralAdvertising(int n) {
     return res;
 }
 
+/*
+ * Complete the 'saveThePrisoner' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts following parameters:
+ *  1. INTEGER n
+ *  2. INTEGER m
+ *  3. INTEGER s
+ */
+int saveThePrisoner(int n, int m, int s) {
+    
+    // Only for debug {
+    int prisoner = s;
+    for (int i = 1; i <= m; i++) {
+        if (i < m) prisoner++;
+        if (prisoner > n) prisoner = 1;
+    }
+    cout << "Last prisoner is #" << prisoner << endl;
+/*
+    prisoner = (m % n + s) % n;
+    prisoner--;
+*/
+
+    int i = n;
+    int vib;
+    int start = 0;
+    int counter = 0;
+    while (i > 1)
+    {
+        counter++;
+        vib = (m % i + start) % i;
+        if (!vib) vib = i;
+        vib--;
+        cout << "Out player " << vib << " on step " << counter << endl;
+        //if (player[vib] == 1) break;
+        start = vib;
+        //player.erase(player.begin() + vib);
+        i--;
+    }
+    cout << " new-new vib = " << vib << endl;
+
+    if (prisoner < 0) prisoner = 1;
+    cout << "(NEW) Last prisoner is #" << prisoner << endl;
+    return prisoner;
+}
+
+/*
+ * Complete the 'superReducedString' function below.
+ *
+ * The function is expected to return a STRING.
+ * The function accepts STRING s as parameter.
+ */
+string superReducedString(string s) {
+    // aaabccddd -> abccddd -> abddd -> abd
+    string res(s);
+    int i = 0;
+    while ((i + 1) < res.size() && res.size() > 0) {
+        if (res[i] == res[i + 1]) {
+            res.erase(i, 2);
+            i = 0;
+        }
+        else {
+            i++;
+        }
+    }
+    return res.empty() ? "Empty String" : res;
+}
+
 int main()
 {
-    /*
-    //vector< vector<int> > arr = { {11, 2, 4}, {4, 5, 6}, {10, 8, -12} };
-    //auto res = diagonalDifference(arr);
-    //cout << "Result = " << res << endl;
-
-    //staircase(100);
-
-    //vector<int> arr = { 942381765, 627450398, 954173620, 583762094, 236817490 };
-    //miniMaxSum(arr);
-
-    //vector<int> arr = { 3,2,1,3 };
-    //auto res = birthdayCakeCandles(arr);
-    //cout << "Candles=" << res << endl;
-    
-    //string t = "12:12:52PM";
-    //cout << "Entrance = " << t << endl;
-    //cout << "Result = " << timeConversion(t) << endl;
-    
-    //cout << kangaroo(21, 6, 47, 3) << endl;
-
-    //vector<int> scores = { 10, 5, 20, 20, 4, 5, 2, 25, 1 };
-    //vector<int> res = breakingRecords(scores);
-    //for (auto s : res) cout << s << "   ";
-
-    //vector<int> s = { 2, 5, 1, 3, 4, 4, 3, 5, 1, 1, 2, 1, 4, 1, 3, 3, 4, 2, 1 };
-    //int res = birthday(s, 18, 7);
-    //cout << res << endl;
-
-    //vector<int> ar = { 1,3,2,6,1,2 };
-    //cout << divisibleSumPairs(6, 3, ar) << endl;
-
-    //vector<int> arr = { 1, 4, 4, 4, 5, 3 };
-    //cout << "Most ID is " << migratoryBirds(arr) << endl;
-
-    //cout << "Day of Programmers is " << dayOfProgrammer(1918) << endl;
-
-    //vector<int> arr = { 3,10,2,9 };
-    //bonAppetit(arr, 1, 12);
-
-    //vector<int> ar = { 1, 1, 3, 1, 2, 1, 3, 3, 3, 3 };
-    //cout << "Count of pair of socks is " << sockMerchant(ar.size(), ar) << endl;
-
-    //cout << "Minimum page count is " << pageCount(18, 17) << endl;
-
-    //cout << "Valley: " << countingValleys(8, "UDDDUDUU");
-
-    //cout << catAndMouse(1, 2, 3) << endl;
-    //cout << catAndMouse(1, 3, 2) << endl;
-
-    vector<int> arr = { 4, 6, 5, 3, 3, 1 };
-    cout << "Longest subarray is " << pickingNumbers(arr) << endl;
-
-    vector<int> ranked = { 295, 294, 291, 287, 287, 285, 285, 284, 283, 279, 277, 274, 274, 271, 270, 268, 268, 268, 264, 260, 
-        259, 258, 257, 255, 252, 250, 244, 241, 240, 237, 236, 236, 231, 227, 
-        227, //35 
-        227, 226, 225, 224, 223, 216, 212, 200, 197, 196, 
-        194, 193, 189, 188, 187, 183, 182, 178, 177, 173, 171, 169, 165, 143, 140, 137, 135, 133, 130, 130, 130, 128, 127, 122, 120, 
-        116, 114, 113, 109, 106, 103, 99, 92, 85, 81, 69, 68, 63, 63, 63, 61, 57, 51, 47, 46, 38, 30, 28, 25, 22, 15, 14, 12, 6, 4 };
-    vector<int> played = { 5, 5, 6, 14, 19, 20, 23, 25, 29, 29, 30, 30, 32, 37, 38, 38, 38, 41, 41, 44, 45, 45, 47, 59, 59, 62, 63, 65, 67, 69, 70, 
-        72, 72, 76, 79, 82, 83, 90, 91, 92, 93, 98, 98, 100, 100, 102, 103, 105, 106, 107, 109, 112, 115, 118, 118, 121, 122, 122, 123, 125, 125, 125, 
-        127, 128, 131, 131, 133, 134, 139, 140, 141, 143, 144, 144, 144, 144, 147, 150, 152, 155, 156, 160, 164, 164, 165, 165, 166, 168, 169, 170, 
-        171, 172, 173, 174, 174, 180, 184, 187, 187, 188, 194, 197, 197, 197, 198, 201, 202, 202, 207, 208, 211, 212, 212, 214, 217, 219, 219, 220, 
-        220, 223, 225, 227, 228, 229, 229, 233, 235, 235, 236, 242, 242, 245, 246, 252, 253, 253, 257, 257, 260, 261, 266, 266, 268, 269, 271, 271, 
-        275, 276, 281, 282, 283, 284, 285, 287, 289, 289, 295, 296, 298, 300, 300, 301, 304, 306, 308, 309, 310, 316, 318, 318, 324, 326, 329, 329, 
-        329, 330, 330, 332, 337, 337, 341, 341, 349, 351, 351, 354, 356, 357, 366, 369, 377, 379, 380, 382, 391, 391, 394, 396, 396, 400 };
-    auto res = climbingLeaderboard(ranked, played);
-    for (auto i : res) cout << i << endl;
-
-    vector<int> arr = { 2, 5, 4, 5, 2 };
-    cout << hurdleRace(7, arr) << endl;
-
-    vector<int> arr = { 1, 3, 1, 3, 1, 4, 1, 3, 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
-    cout << designerPdfViewer(arr, "abc") << endl;
-
-    cout << "Beautyful days: " << beautifulDays(20, 23, 6) << endl;
-    */
-
-    int n = 5;
-    cout << "Cumulative likes on " << n << "th day is " << viralAdvertising(n) << endl;
+ 
 }
