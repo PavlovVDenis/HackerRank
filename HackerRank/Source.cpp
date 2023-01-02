@@ -689,6 +689,43 @@ int camelcase(string s) {
     return res;
 }
 
+/*
+ * Complete the 'minimumNumber' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts following parameters:
+ *  1. INTEGER n
+ *  2. STRING password
+ */
+int minimumNumber(int n, string password) {
+
+    vector<string> passwordRules = {
+        "0123456789",
+        "abcdefghijklmnopqrstuvwxyz",
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        "!@#$%^&*()-+"
+    };
+
+    int res = 0;
+    for (auto& pr : passwordRules) {
+        bool passRule = false;
+        for (int i = 0; i < password.size(); i++) {
+            if (pr.find(password[i]) != string::npos) {
+                passRule = true;
+                break;
+            }
+        }
+        if(!passRule) res++;
+    }
+    
+    int delta = 6 - (n + res);
+    if (delta > 0) res = res + delta;
+
+    return res;
+}
+
 int main()
 {
+    string pas = "#HackerRank";
+    cout << "For password [" << pas << "] need " << minimumNumber(pas.size(), pas) << " characters" << endl;
 }
