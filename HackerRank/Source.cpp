@@ -672,7 +672,23 @@ string superReducedString(string s) {
     return res.empty() ? "Empty String" : res;
 }
 
+/*
+ * Complete the 'camelcase' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts STRING s as parameter.
+ */
+
+int camelcase(string s) {
+    int res = 1;
+    for (int i = 0; i < s.size(); i++) {
+        int charCode = (int)s[i];
+        cout << s[i] << " - " << charCode << endl;
+        if (65 <= charCode && charCode <= 90) res++;
+    }
+    return res;
+}
+
 int main()
 {
- 
 }
