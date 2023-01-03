@@ -775,9 +775,30 @@ string caesarCipher(string s, int k) {
     return res;
 }
 
+/*
+ * Complete the 'marsExploration' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts STRING s as parameter.
+ */
+int marsExploration(string s) {
+    const string phrase = "SOS";
+    const int phraseSize = phrase.size();
+    int res = 0;
+
+    for (int i = 0; (i + phraseSize) <= s.size(); i += phraseSize) {
+        string subPhrase = s.substr(i, phraseSize);
+        for (int k = 0; k < phraseSize; k++) {
+            if (phrase[k] != subPhrase[k]) {
+                res++;
+            }
+        }
+    }
+    return res;
+}
+
 int main()
 {
-    string entrance = "www.abc.xy";
-    cout << "Entrance [" << entrance << "]" << endl;
-    cout << caesarCipher(entrance, 87) << endl;
+    string entrance = "SSSSSSSSSSSSSSSOOOOOOOOOOOOOOOOOOOOOOOOOSSSSSSSO";
+    cout << "Number letters changed during transmission: " << marsExploration(entrance) << endl;
 }
