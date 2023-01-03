@@ -819,8 +819,28 @@ string hackerrankInString(string s) {
     return "YES";
 }
 
+/*
+ * Complete the 'pangrams' function below.
+ *
+ * The function is expected to return a STRING.
+ * The function accepts STRING s as parameter.
+ */
+string pangrams(string s) {
+    const string originAlphabet = "abcdefghijklmnopqrstuvwxyz";
+    string s_s(s);
+    for (int i = 0; i < s_s.size(); i++) s_s[i] = tolower(s_s[i]);
+    cout << "After tolower: [" << s_s << "]" << endl;
+    for (int i = 0; i < originAlphabet.size(); i++) {
+        if (s_s.find(originAlphabet[i]) == string::npos) {
+            return "not pangram";
+        }
+    }
+    return "pangram";
+}
+
 int main()
 {
-    string entrance = "rhbaasdndfsdskgbfefdbrsdfhuyatrjtcrtyytktjjt";
-    cout << hackerrankInString(entrance) << endl;
+    string entrance = "We promptly judged antique ivory buckles for the next prize    ";
+    cout << "Entrance: [" << entrance << "]" << endl;
+    cout << pangrams(entrance) << endl;
 }
