@@ -797,8 +797,30 @@ int marsExploration(string s) {
     return res;
 }
 
+/*
+ * Complete the 'hackerrankInString' function below.
+ *
+ * The function is expected to return a STRING.
+ * The function accepts STRING s as parameter.
+ */
+string hackerrankInString(string s) {
+    if (s.empty()) return "NO";
+    
+    const string phrase = "hackerrank";
+    const int phraseSize = phrase.size();
+
+    int start = s.find(phrase[0]);
+    if (start == string::npos) return "NO";
+    for (int i = 1; i < phraseSize; i++) {
+        int next = s.find(phrase[i], start + 1);
+        if (next == string::npos) return "NO";
+        start = next;
+    }
+    return "YES";
+}
+
 int main()
 {
-    string entrance = "SSSSSSSSSSSSSSSOOOOOOOOOOOOOOOOOOOOOOOOOSSSSSSSO";
-    cout << "Number letters changed during transmission: " << marsExploration(entrance) << endl;
+    string entrance = "rhbaasdndfsdskgbfefdbrsdfhuyatrjtcrtyytktjjt";
+    cout << hackerrankInString(entrance) << endl;
 }
