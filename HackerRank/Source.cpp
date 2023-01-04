@@ -829,7 +829,6 @@ string pangrams(string s) {
     const string originAlphabet = "abcdefghijklmnopqrstuvwxyz";
     string s_s(s);
     for (int i = 0; i < s_s.size(); i++) s_s[i] = tolower(s_s[i]);
-    cout << "After tolower: [" << s_s << "]" << endl;
     for (int i = 0; i < originAlphabet.size(); i++) {
         if (s_s.find(originAlphabet[i]) == string::npos) {
             return "not pangram";
@@ -838,9 +837,48 @@ string pangrams(string s) {
     return "pangram";
 }
 
+/*
+ * Complete the 'weightedUniformStrings' function below.
+ *
+ * The function is expected to return a STRING_ARRAY.
+ * The function accepts following parameters:
+ *  1. STRING s
+ *  2. INTEGER_ARRAY queries
+ */
+vector<string> weightedUniformStrings(string s, vector<int> queries) {
+    char currentChar = s[0];
+    int currentWeight = currentChar - 'a' + 1;
+    int totalWeight = currentWeight;
+
+    map<int, int> myMap;
+    myMap.insert(make_pair(totalWeight, 0));
+
+    for (int i = 1; i < s.size(); i++) {
+        if (s[i] != currentChar) {
+            currentChar = s[i];
+            currentWeight = currentChar - 'a' + 1;
+            totalWeight = 0;
+        }
+        totalWeight += currentWeight;
+        myMap.insert(make_pair(totalWeight, 0));
+    }
+
+    map<int, int>::iterator myMap_it;
+    vector<string> res;
+    for (auto& q : queries) {
+        myMap_it = myMap.find(q);
+        res.push_back(myMap_it == myMap.end() ? "No" : "Yes");
+    }
+    return res;
+}
+
 int main()
 {
-    string entrance = "We promptly judged antique ivory buckles for the next prize    ";
+    string entrance = "abbcccdddd";
     cout << "Entrance: [" << entrance << "]" << endl;
-    cout << pangrams(entrance) << endl;
+
+    vector<int> arr = { 1,7,5,4,150 };
+    vector<string> res = weightedUniformStrings(entrance, arr);
+    cout << "Results:" << endl;
+    for (auto& r : res) cout << r << endl;
 }
