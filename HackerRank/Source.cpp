@@ -887,9 +887,53 @@ string funnyString(string s) {
     return "Funny";
 }
 
+/*
+ * Complete the 'gemstones' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts STRING_ARRAY arr as parameter.
+ */
+int gemstones(vector<string> arr) {
+    map<char, int> myMap;
+    map<char, int>::iterator myMap_it;
+
+    for (int a = 0; a < arr.size(); a++) {
+
+        string currentWord = arr[a];
+        string alreadyHave = "";
+
+        for (int i = 0; i < currentWord.size(); i++) {
+
+            char currentChar = currentWord[i];
+
+            myMap_it = myMap.find(currentChar);
+            if (myMap_it == myMap.end()) {
+                myMap.insert(make_pair(currentChar, 1));
+                alreadyHave.push_back(currentChar);
+            }
+            else {
+                if (alreadyHave.find(currentChar) == string::npos) {
+                     myMap_it->second++;
+                     alreadyHave.push_back(currentChar);
+                }
+            }
+        }
+
+    }
+
+    int res = 0;
+    for (auto& m : myMap) {
+        if (m.second == arr.size()) res++;
+    }
+    return res;
+}
+
 int main()
 {
-    string entrance = "acxz";
-    cout << "Entrance: [" << entrance << "]" << endl;
-    cout << funnyString(entrance) << endl;
+    vector<string> arr = {
+        "abcdde",
+        "baccd",
+        "eeabg"
+    };
+    cout << gemstones(arr) << endl;
 }
