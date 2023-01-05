@@ -872,13 +872,24 @@ vector<string> weightedUniformStrings(string s, vector<int> queries) {
     return res;
 }
 
+/*
+ * Complete the 'funnyString' function below.
+ *
+ * The function is expected to return a STRING.
+ * The function accepts STRING s as parameter.
+ */
+string funnyString(string s) {
+    for (int i = 0, k = s.size() - 1; (i + 1) < s.size() && (k - 1) >= 0; i++, k--) {
+        if (abs(s[i] - s[i + 1]) != abs(s[k] - s[k - 1])) {
+            return "Not Funny";
+        }
+    }
+    return "Funny";
+}
+
 int main()
 {
-    string entrance = "abbcccdddd";
+    string entrance = "acxz";
     cout << "Entrance: [" << entrance << "]" << endl;
-
-    vector<int> arr = { 1,7,5,4,150 };
-    vector<string> res = weightedUniformStrings(entrance, arr);
-    cout << "Results:" << endl;
-    for (auto& r : res) cout << r << endl;
+    cout << funnyString(entrance) << endl;
 }
