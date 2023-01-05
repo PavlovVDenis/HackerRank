@@ -928,12 +928,27 @@ int gemstones(vector<string> arr) {
     return res;
 }
 
+/*
+ * Complete the 'alternatingCharacters' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts STRING s as parameter.
+ */
+int alternatingCharacters(string s) {
+    if (s.size() == 1) return 0;
+
+    int res = 0;
+    char currentChar = s[0];
+    for (int i = 1; i < s.size(); i++) {
+        if (s[i] == currentChar) res++;
+        else currentChar = s[i];
+    }
+    return res;
+}
+
 int main()
 {
-    vector<string> arr = {
-        "abcdde",
-        "baccd",
-        "eeabg"
-    };
-    cout << gemstones(arr) << endl;
+    string entrance = "AAABBB";
+    cout << "Entrance: [" << entrance << "]" << endl;
+    cout << "Count of erase: " << alternatingCharacters(entrance) << endl;
 }
