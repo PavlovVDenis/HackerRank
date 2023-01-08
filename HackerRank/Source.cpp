@@ -946,9 +946,76 @@ int alternatingCharacters(string s) {
     return res;
 }
 
+/*
+ * Complete the 'bigSorting' function below.
+ *
+ * The function is expected to return a STRING_ARRAY.
+ * The function accepts STRING_ARRAY unsorted as parameter.
+ */
+vector<string> bigSorting(vector<string> unsorted) {
+
+    vector<string> res = unsorted;
+
+    auto myComp = [](const string& f, const string& s) {
+        if (f.length() == s.length()) {
+            return f < s;
+        }
+        else {
+            return f.length() < s.length();
+        }
+    };
+    sort(res.begin(), res.end(), myComp);
+
+    //vector<string> res = unsorted;
+    //bool tryOneMore = false;
+    //do {
+    //    tryOneMore = false;
+
+    //    for (int i = 0; (i + 1) < res.size(); i++) {
+    //        bool comp;
+    //        if (res[i].length() == res[i + 1].length()) comp = res[i] > res[i + 1];
+    //        else comp = res[i].length() > res[i + 1].length();
+    //        if (comp) {
+    //            swap(res[i], res[i + 1]);
+    //            tryOneMore = true;
+    //        }
+    //    }
+
+    //    for (int k = res.size() - 1; (k - 1) >= 0;  k--) {
+    //        bool comp;
+    //        if (res[k].length() == res[k - 1].length()) comp = res[k] < res[k - 1];
+    //        else comp = res[k].length() < res[k - 1].length();
+    //        if (comp) {
+    //            swap(res[k], res[k - 1]);
+    //            tryOneMore = true;
+    //        }
+    //    }
+    //} while (tryOneMore);
+
+    //for (int i = 0; i < res.size(); i++) {
+    //    for (int k = 0; (k + 1) < res.size() - i; k++) {
+    //        bool comp;
+    //        if (res[k].length() == res[k + 1].length()) {
+    //            comp = res[k] > res[k + 1];
+    //        }
+    //        else {
+    //            comp = res[k].length() > res[k + 1].length();
+    //        }
+    //        if (comp) {
+    //            swap(res[k], res[k + 1]);
+    //        }
+    //    }
+    //}
+    return res;
+}
+
 int main()
 {
-    string entrance = "AAABBB";
-    cout << "Entrance: [" << entrance << "]" << endl;
-    cout << "Count of erase: " << alternatingCharacters(entrance) << endl;
+    vector<string> arr = { "10", "31415926535897932384626433832795", "65", "-90" };
+    for (auto& a : arr) cout << a << "  ";
+    cout << endl;
+
+    vector<string> res = bigSorting(arr);
+    for (auto& r : res) cout << r << "  ";
+    cout << endl;
 }
