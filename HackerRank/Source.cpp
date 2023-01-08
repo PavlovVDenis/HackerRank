@@ -1009,13 +1009,34 @@ vector<string> bigSorting(vector<string> unsorted) {
     return res;
 }
 
+/*
+ * Complete the 'insertionSort1' function below.
+ *
+ * The function accepts following parameters:
+ *  1. INTEGER n
+ *  2. INTEGER_ARRAY arr
+ */
+void insertionSort1(int n, vector<int> arr) {
+    int newItem = arr[n - 1];
+    int index   = n - 1;
+    while (index >= 1 && arr[index - 1] > newItem) {
+        arr[index] = arr[index - 1];
+        index--;
+        for (auto& a : arr) cout << a << " "; cout << endl;
+    }
+    arr[index] = newItem;
+
+    cout << "Index: " << index << endl << "Result: ";
+    for (auto& a : arr) cout << a << " "; cout << endl;
+}
+
 int main()
 {
-    vector<string> arr = { "10", "31415926535897932384626433832795", "65", "-90" };
+    //vector<int> arr = { 2, 4, 6, 8, 3 };
+    vector<int> arr = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 1 };
+    cout << "Entrance ";
     for (auto& a : arr) cout << a << "  ";
     cout << endl;
 
-    vector<string> res = bigSorting(arr);
-    for (auto& r : res) cout << r << "  ";
-    cout << endl;
+    insertionSort1(arr.size(), arr);
 }
