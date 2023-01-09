@@ -1030,13 +1030,35 @@ void insertionSort1(int n, vector<int> arr) {
     for (auto& a : arr) cout << a << " "; cout << endl;
 }
 
+/*
+ * Complete the 'insertionSort2' function below.
+ *
+ * The function accepts following parameters:
+ *  1. INTEGER n
+ *  2. INTEGER_ARRAY arr
+ */
+void insertionSort2(int n, vector<int> arr) {
+    for (int i = 1; i < arr.size(); i++) {
+        int newItem = arr[i];
+        int index = i;
+        while ((index - 1) >= 0 && arr[index - 1] > newItem) {
+            arr[index] = arr[index - 1];
+            index--;
+        }
+        arr[index] = newItem;
+        for (auto& a : arr) cout << a << " "; cout << endl;
+    }
+}
+
 int main()
 {
     //vector<int> arr = { 2, 4, 6, 8, 3 };
-    vector<int> arr = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 1 };
+    //vector<int> arr = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 1 };
+    vector<int> arr = { 3, 4, 7, 5, 6, 2, 1 };
     cout << "Entrance ";
     for (auto& a : arr) cout << a << "  ";
     cout << endl;
 
-    insertionSort1(arr.size(), arr);
+    //insertionSort1(arr.size(), arr);
+    insertionSort2(arr.size(), arr);
 }
