@@ -1099,12 +1099,36 @@ int runningTime(vector<int> arr) {
     return res;
 }
 
+/*
+ * Complete the 'quickSort' function below.
+ *
+ * The function is expected to return an INTEGER_ARRAY.
+ * The function accepts INTEGER_ARRAY arr as parameter.
+ */
+vector<int> quickSort(vector<int> arr) {
+    vector<int> res;
+    int pivot = arr[0];
+
+    // 1. Left subarray.
+    for (auto& s : arr) if (s < pivot) res.push_back(s);
+
+    // 2. Equal subarray.
+    for (auto& s : arr) if (s == pivot) res.push_back(s);
+
+    // 3. Right subarray.
+    for (auto& s : arr) if (s > pivot) res.push_back(s);
+
+    return res;
+}
+
 int main()
 {
-    vector<int> arr = { 2, 1, 3, 1, 2 };
+    vector<int> arr = { 4, 5, 3, 7, 2 };
     cout << "Entrance ";
     for (auto& a : arr) cout << a << "  ";
     cout << endl;
 
-    cout << "Result: " << runningTime(arr) << endl;
+    cout << "Result: "  << endl;
+    for (auto& s : quickSort(arr)) cout << s << "  ";
+    cout << endl;
 }
