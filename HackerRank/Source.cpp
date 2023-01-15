@@ -1074,18 +1074,37 @@ void insertionSort(int N, int arr[]) {
     }
 }
 
+/*
+ * Complete the 'runningTime' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts INTEGER_ARRAY arr as parameter.
+ */
+int runningTime(vector<int> arr) {
+    int res = 0;
+    int i, j;
+    int value;
+    for (i = 1; i < arr.size(); i++)
+    {
+        value = arr[i];
+        j = i - 1;
+        while (j >= 0 && value < arr[j])
+        {
+            arr[j + 1] = arr[j];
+            res++;
+            j = j - 1;
+        }
+        arr[j + 1] = value;
+    }
+    return res;
+}
+
 int main()
 {
-    //vector<int> arr = { 2, 4, 6, 8, 3 };
-    //vector<int> arr = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 1 };
-    //vector<int> arr = { 3, 4, 7, 5, 6, 2, 1 };
-    const int arrSize = 6;
-    int arr[arrSize] = { 7, 4, 3, 5, 6, 2 };
+    vector<int> arr = { 2, 1, 3, 1, 2 };
     cout << "Entrance ";
     for (auto& a : arr) cout << a << "  ";
     cout << endl;
 
-    //insertionSort1(arr.size(), arr);
-    //insertionSort2(arr.size(), arr);
-    insertionSort(arrSize, arr);
+    cout << "Result: " << runningTime(arr) << endl;
 }
