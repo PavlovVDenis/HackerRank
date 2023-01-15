@@ -1128,10 +1128,16 @@ vector<int> quickSort(vector<int> arr) {
  * The function accepts INTEGER_ARRAY arr as parameter.
  */
 vector<int> countingSort(vector<int> arr) {
-    vector<int> res(100, 0);
+    vector<int> indexes(100, 0);
+    for (auto& a: arr) indexes[a]++;
 
-    for (auto& a: arr) res[a]++;
-
+    vector<int> res;
+    for (int i = 0; i < indexes.size(); i++) {
+        if (indexes[i] == 0) continue;
+        for (int k = 1; k <= indexes[i]; k++) {
+            res.push_back(i);
+        }
+    }
     return res;
 }
 
